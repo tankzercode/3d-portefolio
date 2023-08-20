@@ -5,7 +5,10 @@ import { OrbitControls, useScroll } from "@react-three/drei";
 import { useRef } from "react";
 import { Planet } from "./Planet";
 
-export const Experience = () => {
+export const Experience = (props) => {
+
+  console.log("experience props")
+  console.log(props.scroll)
   const scroll = useScroll();
   const test = useRef()
   useFrame((state, delta) => {
@@ -20,7 +23,7 @@ export const Experience = () => {
         enableZoom={false}
        position={[0,0,100]}
       />
-      <Planet />
+      <Planet scroll={props.scroll}/>
 
     </>
   );

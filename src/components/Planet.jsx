@@ -14,7 +14,10 @@ export function Planet(props) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('models/planet/scene.gltf')
   const { actions, names } = useAnimations(animations, group)
+console.log(materials.Clouds)
 
+materials.Clouds.clipIntersection = true
+materials.Clouds.lightMapIntensity= 5
   console.log(names)
   useEffect(() => {
     actions[names[0]].play()
@@ -28,7 +31,7 @@ export function Planet(props) {
               <group name="Clouds_1">
                 <mesh name="Object_4" geometry={nodes.Object_4.geometry} material={materials.Clouds} />
               </group>
-              <group name="Planet_2">
+              <group name="Planet_2" >
                 <mesh name="Object_6" geometry={nodes.Object_6.geometry} material={materials.Planet} />
               </group>
             </group>
