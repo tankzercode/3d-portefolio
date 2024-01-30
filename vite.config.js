@@ -9,6 +9,6 @@ export default defineConfig({
     outDir: "build",
   },
   base: './',  
-
+  assetsInclude: ['**/*.gltf'],
   plugins: [ react()],
 });
