@@ -1,5 +1,5 @@
 
-import { Float, Line, OrbitControls, PerspectiveCamera, useScroll, Text, Cloud } from "@react-three/drei";
+import { Float, Line, OrbitControls, PerspectiveCamera, useScroll, Text, Cloud, Image } from "@react-three/drei";
 import World from "./World";
 import { Cloud1 } from "./Cloud1";
 import Cloud2 from "./Cloud2";
@@ -10,6 +10,7 @@ import { Vector3 } from "three";
 import * as THREE from "three";
 import { Cloud5 } from "./Cloud5";
 import { Cloud8 } from "./Cloud8";
+import { Balon1 } from "./Ballon1";
 
 const NUMBERPOINTS = 1200
 export default function Experience2() {
@@ -120,38 +121,45 @@ export default function Experience2() {
 
 
       <group position={[positionX, 0.2, -30]}>
-      <Text scale={scale} fontSize={0.17} color="white" anchorX={"left"} anchorY={"middle"} >
-      <meshStandardMaterial onBeforeCompile={(shader) => {
-          shader.fragmentShader = shader.fragmentShader.replace(`vec4 diffuseColor = vec4( diffuse, opacity );`,
-            `float fadeDist = 50.0;
+        <Text scale={scale} fontSize={0.17} color="white" anchorX={"left"} anchorY={"middle"} >
+          <meshStandardMaterial onBeforeCompile={(shader) => {
+            shader.fragmentShader = shader.fragmentShader.replace(`vec4 diffuseColor = vec4( diffuse, opacity );`,
+              `float fadeDist = 50.0;
+              float dist = length(vViewPosition);
+              float fadeOpacity = smoothstep(fadeDist, 0.5, dist);
+              vec4 diffuseColor = vec4(diffuse, fadeOpacity * opacity);`)
+
+            console.log(shader.fragmentShader)
+
+          }} envMapIntensity={2} transparent opacity={1} />
+          Hello {'\n'}
+          {'\n'}
+          {'\n'}
+        </Text>
+        <Text scale={scale} fontSize={0.20} color="white" anchorX={"left"} anchorY={"middle"} >
+
+          <meshStandardMaterial onBeforeCompile={(shader) => {
+            shader.fragmentShader = shader.fragmentShader.replace(`vec4 diffuseColor = vec4( diffuse, opacity );`,
+              `float fadeDist = 50.0;
   float dist = length(vViewPosition);
   float fadeOpacity = smoothstep(fadeDist, 0.5, dist);
   vec4 diffuseColor = vec4(diffuse, fadeOpacity * opacity);`)
 
-          console.log(shader.fragmentShader)
+            console.log(shader.fragmentShader)
 
-        }} envMapIntensity={2} transparent opacity={1} />
-        Hello {'\n'}
-         {'\n'}
-         {'\n'}
-      </Text>
-      <Text scale={scale} fontSize={0.12} color="white" anchorX={"left"} anchorY={"middle"} >
-
-      <meshStandardMaterial onBeforeCompile={(shader) => {
-          shader.fragmentShader = shader.fragmentShader.replace(`vec4 diffuseColor = vec4( diffuse, opacity );`,
-            `float fadeDist = 50.0;
-  float dist = length(vViewPosition);
-  float fadeOpacity = smoothstep(fadeDist, 0.5, dist);
-  vec4 diffuseColor = vec4(diffuse, fadeOpacity * opacity);`)
-
-          console.log(shader.fragmentShader)
-
-        }} envMapIntensity={2} transparent opacity={1} />
+          }} envMapIntensity={2}  opacity={1} />
 
 
-        I am tanguy {'\n'}
-        full stack developpeur
-      </Text>
+          I am tanguy {'\n'}
+          full stack developpeur
+
+
+        </Text>
+
+
+        {/* <Image url="src/assets/photoProfil.png"  /> */}
+
+
       </group>
       <Cloud5 position={[3, 1, -65]} />
       <Cloud5 position={[-4, -0.6, -65]} />
@@ -172,6 +180,10 @@ export default function Experience2() {
       <Cloud5 position={[4, 0.5, -17]} />
 
 
+
+      <Float floatIntensity={0.000} speed={0.2}>
+        <Balon1 scale={[0.1, 0.1, 0.1]} position={[7, 2, -50]} />
+      </Float>
       <Cloud5 position={[-3, 0.5, -9]} />
       <Cloud5 position={[4, -1, -7]} />
 
