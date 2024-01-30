@@ -1,4 +1,5 @@
 {
+  "homepage": "https://tankzercode.github.io/3d-portefolio",
   "name": "r3f-vite-starter",
   "private": true,
   "version": "1.0.0",
@@ -6,12 +7,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy" :"gh-pages -d build"
   },
   "dependencies": {
     "@react-three/drei": "9.75.0",
     "@react-three/fiber": "8.13.3",
     "@types/three": "0.152.1",
+    "gh-pages": "^6.1.1",
     "lamina": "^1.1.23",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
